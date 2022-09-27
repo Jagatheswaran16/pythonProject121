@@ -19,7 +19,7 @@ driver.maximize_window()
 driver.get("https://www.youtube.com/")
 
 web=driver.title
-print(web)
+
 
 assert "YouTube"== web
 
