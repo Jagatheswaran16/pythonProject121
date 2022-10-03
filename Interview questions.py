@@ -15,27 +15,28 @@ driver =webdriver.Chrome(executable_path='C:/Users/jagatheswaran.m/PycharmProjec
 
 driver.maximize_window()
 
-driver.implicitly_wait(1)
-driver.get("https://www.amazon.com/")
+driver.implicitly_wait(5)
 
-driver.find_element(By.XPATH, "//input[@id='twotabsearchtextbox']").send_keys("Laptops")
-driver.find_element(By.XPATH, "//input[@id='nav-search-submit-button']").click()
+driver.get("https://www.yatra.com/")
 
-k=driver.find_elements(By.TAG_NAME, "a")
+driver.find_element(By.XPATH, "//a[@id='booking_engine_visa']").click()
+par=driver.current_window_handle
 
 
-for i in range (len(k)):
-    if i== 59:
-        k[i].click()
+child= driver.window_handles
 
-driver.find_element(By.ID,  "add-to-cart-button").click()
+for i in child:
+    if i !=par:
+        driver.switch_to.window(i)
+        time.sleep(1)
+        driver.find_element(By.LINK_TEXT, "Dubai Visa").click()
 
-l=driver.find_element(By.XPATH, '//*[@id="sw-all-product-variations"]/ul/li[1]').text
-print(l)
 
-assert l== 'Model name: M1502IA-AS51'
-
-driver.close()
+driver.switch_to.window(par)
+time.sleep(2)
+driver.refresh()
+time.sleep(2)
+driver.quit()
 
 
 
