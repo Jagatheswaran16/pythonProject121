@@ -15,7 +15,7 @@ driver =webdriver.Chrome(executable_path='C:/Users/jagatheswaran.m/PycharmProjec
 
 driver.maximize_window()
 
-driver.implicitly_wait(1)
+time.sleep(2)
 driver.get("https://www.amazon.com/")
 
 driver.find_element(By.XPATH, "//input[@id='twotabsearchtextbox']").send_keys("Laptops")
@@ -36,9 +36,6 @@ print(l)
 assert l== 'Model name: M1502IA-AS51'
 
 driver.close()
-
-
-
 
 
 
