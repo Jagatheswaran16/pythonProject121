@@ -39,6 +39,7 @@ class amazon:
 
 o=amazon()
 o.test()
+print ("closed")
 
 
 
