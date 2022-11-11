@@ -1,4 +1,6 @@
 import time
+
+from select import select
 from selenium.webdriver import ActionChains
 
 from selenium import webdriver
@@ -9,34 +11,43 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 
+class amazon:
+    def test(self):
 
 
-driver =webdriver.Chrome(executable_path='C:/Users/jagatheswaran.m/PycharmProjects/pythonProject/chromedriver.exe')
-
-driver.maximize_window()
-
-driver.implicitly_wait(5)
-
-driver.get("https://www.yatra.com/")
-
-driver.find_element(By.XPATH, "//a[@id='booking_engine_visa']").click()
-par=driver.current_window_handle
+        #driver = webdriver.Chrome(executable_path='C:/Users/jagatheswaran.m/PycharmProjects/pythonProject/chromedriver.exe')
+        driver = webdriver.Edge(executable_path='C:/Users/jagatheswaran.m/PycharmProjects/pythonProject/msedgedriver.exe')
+        driver.maximize_window()
 
 
-child= driver.window_handles
 
-for i in child:
-    if i !=par:
-        driver.switch_to.window(i)
-        time.sleep(1)
-        driver.find_element(By.LINK_TEXT, "Dubai Visa").click()
+        driver.get("https://www.amazon.in/")
+
+        driver.find_element(By.ID, "twotabsearchtextbox").send_keys('macbook pro')
+        driver.find_element(By.XPATH, "//input[@id='nav-search-submit-button']").click()
+        p=driver.current_window_handle
+        print(p)
+
+        k = driver.find_element(By.XPATH, "//div[@class='s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_3']//div[@class='a-section a-spacing-none puis-padding-right-small s-title-instructions-style']//span[1]")
+        k.click()
+        l=driver.window_handles
+        print(l)
+        if l!=p:
+            driver.switch_to.window(p)
+            print("changed to parent window")
 
 
-driver.switch_to.window(par)
-time.sleep(2)
-driver.refresh()
-time.sleep(2)
-driver.quit()
+o=amazon()
+o.test()
+
+
+
+
+
+
+
+
+
 
 
 
