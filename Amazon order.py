@@ -15,32 +15,51 @@ class amazon:
     def test(self):
 
 
-        #driver = webdriver.Chrome(executable_path='C:/Users/jagatheswaran.m/PycharmProjects/pythonProject/chromedriver.exe')
-        driver = webdriver.Edge(executable_path='C:/Users/jagatheswaran.m/PycharmProjects/pythonProject/msedgedriver.exe')
+        driver = webdriver.Chrome(executable_path='C:/Users/jagatheswaran.m/PycharmProjects/pythonProject/chromedriver.exe')
+        #driver = webdriver.Edge(executable_path='C:/Users/jagatheswaran.m/PycharmProjects/pythonProject/msedgedriver.exe')
         driver.maximize_window()
+
 
 
 
         driver.get("https://www.amazon.in/")
 
         driver.find_element(By.ID, "twotabsearchtextbox").send_keys('macbook pro')
-        driver.find_element(By.XPATH, "//input[@id='nav-search-submit-button']").click()
-        p=driver.current_window_handle
-        print(p)
+        driver.find_element(By.CSS_SELECTOR, "#twotabsearchtextbox").click()
 
-        k = driver.find_element(By.XPATH, "//div[@class='s-widget-container s-spacing-small s-widget-container-height-small celwidget slot=MAIN template=SEARCH_RESULTS widgetId=search-results_3']//div[@class='a-section a-spacing-none puis-padding-right-small s-title-instructions-style']//span[1]")
-        k.click()
-        l=driver.window_handles
-        print(l)
-        if l!=p:
-            driver.switch_to.window(p)
-            print("changed to parent window")
+
+        driver.find_element(By.XPATH, "//div[@data-asin='B09JR8RKNN']/child::div/child::div/child::div").click()
+
+        time.sleep(10)
+
 
 
 o=amazon()
 o.test()
-print ("window closed")
 
+
+
+
+class A:
+    def test1(self):
+        driver = webdriver.Chrome(
+            executable_path='C:/Users/jagatheswaran.m/PycharmProjects/pythonProject/chromedriver.exe')
+
+        driver.maximize_window()
+        driver.implicitly_wait(5)
+
+        driver.get("https://www.lambdatest.com/selenium-playground/")
+
+        driver.find_element(By.LINK_TEXT, "Simple Form Demo").click()
+        url = driver.find_element(By.XPATH,
+                                  "//h1[@class='text-size-48 font-bold text-black text-center leading-none text-shadow md:w-full leading-height-70 mx-auto smtablet:text-size-30 smtablet:leading-height-42']").text
+        assert url == "Simple Form Demo"
+        s = "Welcome to LambdaTest"
+        driver.find_element(By.XPATH, "//input[@id='user-message']").send_keys(s)
+        driver.find_element(By.ID, "showInput").click()
+        v = driver.find_element(By.XPATH, "//p[@id='message']").text
+        print(v)
+        assert v == "Welcome to LambdaTest"
 
 
 

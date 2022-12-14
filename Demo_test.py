@@ -19,5 +19,3 @@ ActionChains(driver).drag_and_drop_by_offset(ele, 118, 0).perform()
 k=driver.find_element(By.XPATH, "//output[@id='rangeSuccess']").get_attribute("value")
 print(k)
 assert k== "95"
-
-

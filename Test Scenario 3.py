@@ -17,8 +17,11 @@ driver.find_element(By.LINK_TEXT, "Input Form Submit").click()
 
 #driver.execute_script("window.scrollBy (0, 500)", "")
 driver.find_element(By.ID, "inputZip").send_keys("123")
-k=driver.find_element(By.XPATH, "//button[@type='submit']")
-k.click()
+k=driver.find_element(By.XPATH, "//button[@type='submit']").text
+time.sleep(2)
+driver.find_element(By.LINK_TEXT, "Book a Demo").click()
 
-driver.quit()
+
+
+
 
